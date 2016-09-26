@@ -1,0 +1,43 @@
+{
+  "name": "lothar-preprocessor-label-analyse",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "blade",
+    "feather2",
+    "lothar"
+  ],
+  "author": {
+    "name": "jsyczhanghao@sina.com"
+  },
+  "license": "ISC",
+  "_id": "lothar-preprocessor-label-analyse@1.0.0",
+  "_shasum": "08156d2226d29a038330d1a9f6a495222ae8fc70",
+  "_from": "lothar-preprocessor-label-analyse@>=1.0.0 <2.0.0",
+  "_npmVersion": "2.15.0",
+  "_nodeVersion": "0.12.13",
+  "_npmUser": {
+    "name": "zhanghao",
+    "email": "jsyczhanghao@sina.com"
+  },
+  "dist": {
+    "shasum": "08156d2226d29a038330d1a9f6a495222ae8fc70",
+    "tarball": "https://registry.npmjs.org/lothar-preprocessor-label-analyse/-/lothar-preprocessor-label-analyse-1.0.0.tgz"
+  },
+  "maintainers": [
+    {
+      "name": "zhanghao",
+      "email": "jsyczhanghao@sina.com"
+    }
+  ],
+  "_npmOperationalInternal": {
+    "host": "packages-16-east.internal.npmjs.com",
+    "tmp": "tmp/lothar-preprocessor-label-analyse-1.0.0.tgz_1473142659769_0.9448376321233809"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/lothar-preprocessor-label-analyse/-/lothar-preprocessor-label-analyse-1.0.0.tgz",
+  "readme": "ERROR: No README data found!"
+}
