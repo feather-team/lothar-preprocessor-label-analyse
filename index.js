@@ -68,5 +68,5 @@ module.exports = function(content, file){
         }
 
         return all;
-    });
+    }).replace(/\s@\w+/g, '<<<BLADE_LABEL_HACK>>>$&');
 };
