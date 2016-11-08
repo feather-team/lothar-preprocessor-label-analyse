@@ -4,11 +4,15 @@ var REG = /<!--(?:(?!\[if [^\]]+\]>)[\s\S])*?-->|\{\{--[\s\S]*?--\}\}|@(extends|
 var Path = require('path');
 
 function getId(id, noSuffix){
-    var SUFFIX = '.' + feather.config.get('template.suffix'), REG = new RegExp(SUFFIX.replace(/\./, '\\\\.') + '$', 'gi');
+    var SUFFIX = '.' + feather.config.get('template.suffix');
     return id.replace(SUFFIX, '') + (noSuffix ? '' : SUFFIX);
 }
 
 module.exports = function(content, file){
+    if(!file.isHtmlLike){
+        return content;
+    }
+
     return content.replace(REG, function(all, refType, id){
         if(refType){
             var pid, namespace = '';
@@ -23,7 +27,7 @@ module.exports = function(content, file){
                 id = id[0];
             }
 
-            id = getId(id).split(':');
+            id = getId(id, true).split(':');
 
             if(id.length > 1){
                 namespace = id[0] + ':';
@@ -36,10 +40,10 @@ module.exports = function(content, file){
                 id = Path.join(Path.dirname(file.subpath), id).replace(/^\/+/, '');
             }else if(refType != 'extends'){
                 id = refType + '/' + id;
-
             }
 
-            id = namespace + id;
+            id = id.replace(/\./g, '/');
+            id = namespace + id + '.' + feather.config.get('template.suffix');
 
             var info = feather.project.lookup(id);
             var refFile = info.file;
