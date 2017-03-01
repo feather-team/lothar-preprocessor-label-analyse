@@ -13,7 +13,7 @@ module.exports = function(content, file){
         return content;
     }
 
-    return content.replace(REG, function(all, refType, id){
+    content = content.replace(REG, function(all, refType, id){
         if(refType){
             var pid, namespace = '';
 
@@ -72,5 +72,30 @@ module.exports = function(content, file){
         }
 
         return all;
-    }).replace(/\s@\w+/g, '<<<BLADE_LABEL_HACK>>>$&');
+    });
+
+    //如果是pagelet，由于blade的extends非真正继承的原因，导致extends的内容会直接插入至页面的底部，导致无法被textarea包裹
+    //所以先将其直接放置底部，并且换成include解析
+    if(file.isPagelet){
+        var start = content.indexOf('@extends(');
+
+        if(start > -1){
+            var index = start + 9, k = 1, chr;
+
+            while(chr = content[index++]){
+                if(chr == ')'){
+                    --k;
+                }else if(chr == '('){
+                    ++k;
+                }
+
+                if(!k){ 
+                    content = content.substring(0, start) + ' ' + content.substring(index) + ' ' + content.substring(start, index).replace('@extends(', '@include(');
+                    break;
+                }
+            }
+        }
+    }
+
+    return content.replace(/\s@\w+/g, '<<<BLADE_LABEL_HACK>>>$&');
 };
